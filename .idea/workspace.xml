@@ -7,61 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6376581e-4043-4e67-8153-28600db3e700" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/report/features/6ab5f0ce-56b0-442a-aa8e-76c882ea04cf-flujos-pvi.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/report/features/9f96b90e-f123-49af-83e0-8c488ed2ba4a-flujos-pvi.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/dist/moment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/dist/moment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/moment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/moment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/moment/src/moment.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/moment/src/moment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/lib/generate-report.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/lib/generate-report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/assets/js/Chart.style.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/assets/js/Chart.style.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/components/scenarios.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/components/scenarios.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/features-overview.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/multiple-cucumber-html-reporter/templates/features-overview.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PVI/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PVI/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/test.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/features/test.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pom/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pom/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pom/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pom/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pom/OiPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pom/OiPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/runner/Testrunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/runner/Testrunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/seleniumgluecode/Hooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/seleniumgluecode/Hooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/seleniumgluecode/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/seleniumgluecode/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/seleniumgluecode/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/seleniumgluecode/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/chromedriver/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/chromedriver/chromedriver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PVI/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/PVI/AppTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/chromedriver/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/chromedriver/chromedriver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/features/test.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/pom/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/pom/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/pom/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/pom/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/pom/OiPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/pom/OiPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/Testrunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/Testrunner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/ChromeDriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/ChromeDriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverManagerFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverManagerFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/DriverType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/FirefoxDriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/runner/browser_manager/FirefoxDriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/Hooks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/Hooks.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/TestBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/seleniumgluecode/TestBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/test/report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/report/reporte_pvi.json" beforeDir="false" afterPath="$PROJECT_DIR$/test/report/reporte_pvi.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +28,7 @@
   </component>
   <component name="ProjectId" id="2AJKqFBGcG31VBO0kI20hkTi2NM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -219,36 +166,63 @@
       <workItem from="1663862251229" duration="2006000" />
       <workItem from="1664803437743" duration="298000" />
       <workItem from="1665069636435" duration="13312000" />
-      <workItem from="1665779389715" duration="1097000" />
+      <workItem from="1665779389715" duration="3243000" />
     </task>
+    <task id="LOCAL-00001" summary="segundo commit">
+      <created>1667415475388</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1667415475388</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="segundo commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="segundo commit" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="423" key="GridCell.Tab.0.bottom" timestamp="1665779117350">
+    <state x="378" y="3" key="CommitChangelistDialog2" timestamp="1667415471361">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="423" key="GridCell.Tab.0.bottom/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1665779117350" />
+    <state x="378" y="3" key="CommitChangelistDialog2/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1667415471361" />
+    <state width="1493" height="339" key="GridCell.Tab.0.bottom" timestamp="1667415489151">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1493" height="339" key="GridCell.Tab.0.bottom/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1667415489151" />
     <state width="1877" height="406" key="GridCell.Tab.0.bottom/0.0.1536.816/1920.0.1920.1032@1920.0.1920.1032" timestamp="1660773121762" />
     <state width="1493" height="376" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1661534273044" />
-    <state width="1493" height="423" key="GridCell.Tab.0.center" timestamp="1665779117350">
+    <state width="1493" height="339" key="GridCell.Tab.0.center" timestamp="1667415489150">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="423" key="GridCell.Tab.0.center/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1665779117350" />
+    <state width="1493" height="339" key="GridCell.Tab.0.center/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1667415489150" />
     <state width="1877" height="406" key="GridCell.Tab.0.center/0.0.1536.816/1920.0.1920.1032@1920.0.1920.1032" timestamp="1660773121762" />
     <state width="1493" height="376" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1661534273044" />
-    <state width="1493" height="423" key="GridCell.Tab.0.left" timestamp="1665779117349">
+    <state width="1493" height="339" key="GridCell.Tab.0.left" timestamp="1667415489150">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="423" key="GridCell.Tab.0.left/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1665779117349" />
+    <state width="1493" height="339" key="GridCell.Tab.0.left/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1667415489150" />
     <state width="1877" height="406" key="GridCell.Tab.0.left/0.0.1536.816/1920.0.1920.1032@1920.0.1920.1032" timestamp="1660773121762" />
     <state width="1493" height="376" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1661534273044" />
-    <state width="1493" height="423" key="GridCell.Tab.0.right" timestamp="1665779117350">
+    <state width="1493" height="339" key="GridCell.Tab.0.right" timestamp="1667415489150">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="423" key="GridCell.Tab.0.right/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1665779117350" />
+    <state width="1493" height="339" key="GridCell.Tab.0.right/0.0.1536.816/1920.0.1920.1032@0.0.1536.816" timestamp="1667415489150" />
     <state width="1877" height="406" key="GridCell.Tab.0.right/0.0.1536.816/1920.0.1920.1032@1920.0.1920.1032" timestamp="1660773121762" />
     <state width="1493" height="376" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1661534273044" />
     <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1667415410625">

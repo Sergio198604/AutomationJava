@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../assets/js/darkmode.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-control" content="public">
+    <title>Multiple Cucumber HTML Reporter</title>
+
+    
+            <!-- Bootstrap -->
+            <link rel="stylesheet" href="../assets/css/bootstrap.min.css" >
+
+            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+            <!--[if lt IE 9]>
+            <script src="../assets/js/html5shiv.min.js"></script>
+            <script src="../assets/js/respond.min.js"></script>
+            <![endif]-->
+
+            <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- Custom Theme Style -->
+    <style type="text/css">
+        body {
+    color: #73879C;
+    background: #F7F7F7;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+}
+
+.main_container {
+    padding: 10px 20px 0;
+}
+
+i span {
+    display: none;
+}
+
+/* Navigation */
+nav.navbar {
+    background: #EDEDED;
+    border-bottom: 1px solid #D9DEE4;
+    margin-bottom: 0px;
+}
+
+filter-i {
+    margin-left: 5px;
+}
+
+nav .navbar-brand {
+    border-right: 1px solid #D9DEE4;
+    color: #5A738E;
+}
+
+nav .navbar-text {
+    font-size: 18px;
+    height: 50px;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 15px 0;
+    float: right;
+}
+
+/* Table */
+table {
+    width: 100%;
+}
+
+table.chart tr th:first-of-type {
+    width: 33.333%;
+}
+
+.table > thead > tr > th {
+    background: #F5F7FA;
+}
+
+table.tile h3, table.tile h4, table.tile span {
+    font-weight: bold;
+    vertical-align: middle !important;
+}
+
+table.tile th, table.tile td {
+    text-align: center;
+}
+
+table.tile th {
+    border-bottom: 1px solid #E6ECEE;
+}
+
+table.tile td {
+    padding: 5px 0;
+}
+
+table.tile td ul {
+    text-align: left;
+    padding-left: 0;
+}
+
+table.tile td ul li {
+    list-style: none;
+    width: 100%;
+}
+
+table.tile td ul li a {
+    width: 100%;
+}
+
+table.tile td ul li a big {
+    right: 0;
+    float: right;
+    margin-right: 13px;
+}
+
+table.tile_info {
+    width: 100%;
+}
+
+table.tile_info td {
+    text-align: left;
+    padding: 1px;
+    font-size: 15px;
+}
+
+table.tile_info td p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    line-height: 28px;
+}
+
+table.tile_info td i {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 17px;
+    float: left;
+    width: 18px;
+    line-height: 28px;
+    text-align: center;
+}
+
+table.tile_info td:first-child {
+    width: 65%;
+}
+
+td span {
+    line-height: 28px;
+}
+
+table.tile_info td.percentage {
+    text-align: right;
+
+}
+
+/* chart in table */
+table td.chart {
+    display: inline-block;
+    position: relative;
+}
+
+table td.chart #feature-chart,
+table td.chart #scenario-chart,
+table td.chart .total {
+    height: 140px;
+    margin: 15px 10px 10px 0;
+    width: 140px;
+}
+
+table td.chart .total {
+    display: inline-block;
+    position: absolute;
+    font-size: 2em;
+    height: 50px;
+    line-height: 50px;
+    top: 45px;
+    left: 45px;
+    text-align: center;
+    vertical-align: middle;
+    width: 50px;
+}
+
+/* colors */
+.ambiguous-color {
+    color: #E74C3C !important;
+}
+
+.failed-color {
+    color: #E74C3C !important;
+}
+
+.not-defined-color {
+    color: #F39C12 !important;
+}
+
+.passed-color {
+    color: #1ABB9C !important;
+}
+
+.pending-color {
+    color: #FFD119 !important;
+}
+
+.skipped-color {
+    color: #3498DB !important;
+}
+
+/* backgrounds */
+.ambiguous-background {
+    background: #b73122 !important;
+}
+
+.failed-background {
+    background: #E74C3C !important;
+}
+
+.not-defined-background {
+    background: #F39C12 !important;
+}
+
+.passed-background {
+    background: #1ABB9C !important;
+}
+
+.pending-background {
+    background: #FFD119 !important;
+}
+
+.skipped-background {
+    background: #3498DB !important;
+}
+
+/* general */
+.x_panel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+}
+
+.x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+    margin-bottom: 10px;
+}
+
+.x_title .filter {
+    width: 40%;
+    float: right;
+}
+
+.x_title h2 {
+    margin: 5px 0 6px;
+    float: left;
+    font-size: 24px;
+    font-weight: 400;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.fixed_height_320 {
+    height: 320px;
+}
+
+.x_title span {
+    color: #BDBDBD;
+}
+
+.x_content {
+    padding: 0 5px 6px;
+    position: relative;
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 5px;
+}
+
+.x_content h4 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.panel_toolbox {
+    float: right;
+    margin: 5px 0 0;
+    min-width: 70px;
+}
+
+.panel_toolbox > li {
+    float: right;
+}
+
+.panel_toolbox > li > a {
+    cursor: pointer;
+}
+
+.panel_toolbox > li > a {
+    padding: 5px;
+    color: #C5C7CB;
+    font-size: 14px;
+}
+
+.panel_toolbox > li > a:hover {
+    background: #F5F7FA;
+}
+
+.page-title {
+    width: 100%;
+    padding: 10px 0 30px 0;
+}
+
+.page-title {
+    display: block;
+}
+
+.page-title h1 {
+    margin: 9px 0 9px 13px;
+    font-size: 30px;
+
+}
+
+.page-title .title_right {
+    width: 55%;
+    float: left;
+    display: block;
+}
+
+.page-title .title_right .pull-right {
+    margin: 10px 0;
+}
+
+.page-title p {
+    margin-left: 15px;
+}
+
+.dashboard-widget-content {
+    padding-top: 9px;
+}
+
+.dashboard-widget-content .sidebar-widget {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
+    border: 1px solid #abd9ea;
+    border-radius: 5px;
+    text-align: center;
+    float: right;
+    padding: 2px;
+    margin-top: 10px;
+}
+
+ul.quick-list {
+    padding-left: 0;
+    display: inline-block;
+}
+
+ul.quick-list li,
+table.quick-list tr {
+    padding-left: 10px;
+    list-style: none;
+    margin: 0;
+    padding-bottom: 6px;
+    padding-top: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+ul.quick-list li .meta-data-title,
+table.quick-list td.meta-data-title {
+    display: inline-block;
+    min-width: 75px;
+    font-weight: bold;
+}
+
+ul.quick-list li span,
+table.quick-list td {
+    line-height: 28px;
+}
+
+ul.quick-list li,
+table.quick-list tr {
+    border-bottom: 1px solid #efefef;
+    padding: 0.5em 0;
+}
+
+ul.quick-list li:last-child,
+table.quick-list tr:last-child {
+    border-bottom: none;
+}
+
+ul.quick-list li i {
+    padding-right: 10px;
+    color: #757679;
+}
+
+.screenshot{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+/* Features / Scenarios */
+ul.panel_toolbox li .step {
+    border-radius: 50%;
+    color: #ffffff;
+    display: block;
+    font-size: 14px;
+    height: 30px;
+    margin-right: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 30px;
+}
+
+.scenario-step-container {
+    margin-bottom: 10px;
+}
+
+.scenario-step-container .label {
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+}
+
+.scenario-step-container .text {
+    display: inline;
+}
+
+.scenario-step-container .duration {
+    position: relative;
+    float: right;
+}
+
+.scenario-step-container .text .keyword.highlight {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.scenario-scroll-bar {
+    overflow-x: scroll;
+}
+
+.scenario-step-collapse,
+.scenario-scroll-bar .arguments {
+    margin-left: 30px;
+    width: auto;
+}
+
+/* media */
+@media (max-width: 1200px) {
+    .x_title h2 {
+        width: 70%;
+    }
+}
+
+@media (max-width: 640px) {
+    .x_title h2 {
+        width: 100%;
+    }
+}
+
+/* override */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+    background-color: #1ABB9C;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+    background-color: #E74C3C;
+}
+
+.created-by {
+    padding: 50px 0;
+    text-align: center;
+}
+
+body.darkmode,
+body.darkmode div.x_panel,
+body.darkmode div.container-fluid,
+body.darkmode div.created-by,
+body.darkmode .dropdown-menu,
+body.darkmode #features-table th
+{
+    background-color: #181616 !important;
+    color: #eee;
+    border-color: gray;
+}
+
+#features-table > thead > tr {
+    color: steelblue;
+}
+
+.darkModeIcon {
+    font-size: x-large;
+    float: left;
+    padding-top: 12px;
+    cursor: pointer;
+}
+
+.darkModeIcon:before {
+    content: '';
+}
+
+body.darkmode li:not([class])>a[id] {
+    color: white;
+}
+body.darkmode li:not([class])>a[id]:hover {
+    background: darkslateblue;
+}
+
+body.darkmode #features-table th {
+    background-color: #3e3939 !important;
+    color: #c3c3c3;
+    border-color: gray;
+}
+
+body.darkmode .form-control {
+    background-color: #3e3939 !important;
+    color: #c3c3c3;
+}
+body.darkmode li[id*=features]>a {
+    background-color: #3e3939 !important;
+}
+
+body.darkmode .btn-info {
+    color: #eee;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+body.darkmode .panel_toolbox > li > a:hover {
+    background: transparent;
+}
+
+body.darkmode div pre {
+    background-color: #3e3939 !important;
+    color: #eee;
+}
+
+body.darkmode span.tag {
+    color: #FFD119;
+}
+
+body.darkmode .keyword {
+    color: #d2691e;
+}
+
+body.darkmode div.tags ~h1 {
+    color: #d2691e;
+}
+
+body.darkmode div.tags ~h2 {
+    color: #d2691e;
+}
+
+svg#moon, svg#sun {
+    width: 40px;
+    height: 30px;
+    fill: #ff4500;
+}
+
+input#darkCheck:checked ~ label>svg#sun {
+    display: none;
+}
+
+label>svg#moon {
+    display: none;
+}
+
+input#darkCheck:checked ~ label>svg#moon {
+    display: inline-block;
+    fill: #ffe4c4;
+}
+
+        
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        window.onload = function() {
+            if(window.localStorage['darkmode'] === 'on') {
+                applyFontStyle();
+            }
+        }
+    </script>
+    <nav class="navbar">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" onclick="history.back(-1)">
+                    <i class="fa fa-arrow-left"><span>Back</span></i>
+                </a>
+            </div>
+            <p class="navbar-text" style="float: left">Features Overview
+            </p>
+            <p class="navbar-text">Multiple Cucumber HTML Reporter</p>
+        </div>
+
+    </nav>
+
+    <div class="main_container">
+
+        <div class="page-title">
+            <div class="tags">
+                
+            </div>
+            <h1>Feature:
+                <small>Flujos PVI</small>
+            </h1>
+            
+                <p>
+                    <strong>Description: </strong> Como usuario quiero realizar diferentes tipos de acciones en el sistema PVI </p>
+                
+               <p><strong>File name:</strong>
+                    test.feature
+                </p>
+                <p><strong>Relative path:</strong>
+                    test.feature</p>
+            
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="x_panel fixed_height_320">
+                    <div class="x_title">
+    <h2>Scenarios</h2>
+    <ul class="nav navbar-right panel_toolbox">
+        <li>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <table class="chart">
+        <tr>
+            <th>
+                <p>Chart</p>
+            </th>
+            <th>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <p class="">Status</p>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <p class="" style="float:right;">Progress</p>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <td class="chart">
+                <canvas id="scenario-chart"></canvas>
+                <div class="total">2</div>
+            </td>
+            <td>
+                <table class="tile_info">
+                    <tr>
+                        <td>
+                            <p data-toggle="tooltip" data-placement="left" title="Scenario passed">
+                                <i class="fa fa-check-circle passed-color"></i>
+                                Passed
+                            </p>
+                        </td>
+                        <td class="percentage">0.00 %</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p data-toggle="tooltip" data-placement="left" title="Scenario failed">
+                                <i class="fa fa-exclamation-circle failed-color"></i>
+                                Failed
+                            </p>
+                        </td>
+                        <td class="percentage">50.00 %</td>
+                    
+                    
+                    <tr>
+                        <td>
+                            <p data-toggle="tooltip" data-placement="left" title="Scenario has no step implmentation.">
+                                <i class="fa fa-question-circle not-defined-color"></i>
+                                Not defined
+                            </p>
+                        </td>
+                        <td class="percentage">50.00 %</td>
+                    </tr>
+                    
+                    </tr>
+                    
+                    
+                </table>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xs-12">
+                <div class="x_panel fixed_height_320">
+                    <div class="x_title">
+    <h2>Metadata</h2>
+    <ul class="nav navbar-right panel_toolbox">
+        <li>
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+</div>
+<div class="x_content">
+    <div class="dashboard-widget-content">
+        <ul class="quick-list">
+            <li>
+                <span class="meta-data-title">
+                    <i class="fa fa-desktop fa-lg"></i>
+                    <i class="fa fa-mobile fa-lg"></i>
+                </span>
+                <span class="meta-data-data">
+                    
+                    
+                    
+                    
+                    <i class="fa fa-desktop fa-lg">
+                        <span>desktop</span>
+                    </i>
+                </span>
+            </li>
+            <li>
+                <span class="meta-data-title">Device</span>
+                <span class="meta-data-data">Local test machine</span>
+            </li>
+            <li>
+                <span class="meta-data-title">OS</span>
+                <span class="meta-data-data">
+                    
+                    
+                    
+                    
+                    <i class="fa fa-linux fa-lg">
+                        <span>linux</span>
+                    </i>
+                    16.04
+                </span>
+            </li>
+            
+            
+            <li>
+                <span class="meta-data-title">Browser</span>
+                <span class="meta-data-data">
+                    
+                    
+                    
+                    
+                    
+                    <i class="fa fa-chrome fa-lg">
+                        <span>chrome</span>
+                    </i>
+                    60
+                    
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+        <div class="dropdown pull-right dropup" >
+            <button class="btn btn-info dropdown-toggle btn-sm" type="button" data-toggle="dropdown" style="margin-bottom: 15px;">
+                Filter By<span class="caret" style="margin-left: 5px"></span></button>
+            <ul class="dropdown-menu">
+                <li> <a id="passed" href="javascript:void(0)" onclick="hideResult(this.id)">Passed
+                    <i class="fa fa-check-circle passed-color filter-i"></i></a>
+                </li>
+                <li> <a id="failed" href="javascript:void(0)" onclick="hideResult(this.id)">Failed
+                    <i class="fa fa-exclamation-circle failed-color filter-i"></i></a>
+                </li>
+                <li> <a id="pending" href="javascript:void(0)" onclick="hideResult(this.id)">Pending
+                    <i class="fa fa-minus-circle pending-color filter-i"></i></a>
+                </li>
+                <li> <a id="skipped" href="javascript:void(0)" onclick="hideResult(this.id)">Skipped
+                    <i class="fa fa-arrow-circle-right fa skipped-color filter-i"></i></a>
+                </li>
+                <li> <a id="not-defined" href="javascript:void(0)" onclick="hideResult(this.id)">Not Defined
+                    <i class="fa fa-question-circle not-defined-color filter-i"></i></a>
+                </li>
+                <li> <a id="ambiguous" href="javascript:void(0)" onclick="hideResult(this.id)">Ambiguous
+                    <i class="fa fa-flash ambiguous-color filter-i"></i></a>
+                </li>
+                <li class="divider"></li>
+                <li> <a id="clear" href="javascript:void(0)"onclick="showAll()">Clear
+                    <i class="fa fa-times-circle"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height: auto;">
+            <div class="x_title">
+
+                <div class="tags">
+                    
+                </div>
+
+                <h2>Scenario: <small>Ingresar una solicitud</small></h2>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                    </li>
+
+                    
+
+                    
+
+                    
+                        <li>
+                            <span class="step skipped-background" data-toggle="tooltip" title="Scenario is skipped">24</span>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <span class="step failed-background" data-toggle="tooltip" title="Scenario failed">1</span>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <span class="step passed-background" data-toggle="tooltip" title="Scenario passed">6</span>
+                        </li>
+                    
+
+                    
+
+                    
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content" style="display: none;">
+                <div class="scenario-step-container"></div>
+                    
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">Before</span>
+
+                                    
+                                        Hook
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+                            
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">Given </span>
+
+                                    
+                                        El usuario se encuentra en la pagina de PVI
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">When </span>
+
+                                    
+                                        ingresa su usuario
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        ingresa su contraseña
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        presionar Ingresar
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step failed">
+                                            <i class="fa fa-exclamation-circle fa-2x failed-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        ingresar en el buscador
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+                                        <a href="#error0-5-error" data-toggle="collapse">+ Show Error</a>
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+                                <div id="error0-5-error" class="scenario-step-collapse collapse">
+                                    <pre class=info>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#buscar"}
+  (Session info: chrome=103.0.5060.134)
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.7.1', revision: '8a0099a', time: '2017-11-06T21:01:39.354Z'
+System info: host: 'DESKTOP-FMMMKUJ', ip: '192.168.0.7', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_333'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.134, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\Sergio Figueroa\Ap...}, goog:chromeOptions: {debuggerAddress: localhost:62246}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: bbc2b4a2dffb036a22f5020521881630
+*** Element info: {Using=id, value=buscar}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:370)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:416)
+	at org.openqa.selenium.By$ById.findElement(By.java:218)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at seleniumgluecode.Test.ingresar_en_el_buscador(Test.java:42)
+	at ✽.And ingresar en el buscador(test.feature:9)
+</pre>
+                                </div>
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        presionar Buscar
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        presionar Ingreso primera solicitud
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar medio de ingreso
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        Agregar primer requerimiento
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar recinto
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar lugar
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar item
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar problema
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        descripcion problema
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar responsable
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        guardar requerimiento
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        Agregar segundo requerimiento
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar segundo recinto
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar segundo lugar
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar segundo item
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        seleccionar segundo problema
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        descripcion segundo problema
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        guardar segundo requerimiento
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        vista previa
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        enviar solicitud
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        marcar propietarios
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        marcar enviar copia
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        ingresar mail CC
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step is skipped">
+                                            <i class="fa fa-arrow-circle-right fa-2x skipped-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">Then </span>
+
+                                    
+                                        envio solicitud final
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+                                        <a href="#info0-29-image" data-toggle="collapse">+ Screenshot</a>
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                                <div id="info0-29-image" class="scenario-step-collapse collapse">
+                                    
+                                        <img class="screenshot" src="data:image/png;base64,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AAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAAAAAAJEIABgAAAAAAAEiEAAwAAAAAAACQCAEYAAAAAAAAIBECMAAAAAAAAEAiBGAAAAAAAACARAjAAAAAAAAAAIkQgAEAAAAAAAASIQADAAAA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kAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAAAAAAEiEAAwAAAAAAACRCAAYAAAAAAABIhAAMAAAAAAAAkAgBGAAAAAAAACARAjAAAAAAAABAIgRgAAAAAAAAgEQIwAAAAAAAAACJEIABAAAA/n97diADAAAAMMjf+h5faQQAADAhgAEAAAAAAAAmBDAAAAAAAADAhAAGAAAAAAAAmBDAAAAAAAAAABMCGAAAAAAAAGBCAAMAAAAAAABMCGAAAAAAAACACQEMAAAAAAAAMCGAAQAAAAAAACYEMAAAAAAAAMCEAAYAAAAAAACYEMAAAAAAAAAAEwIYAAAAAAAAYEIAAwAAAAAAAEwIYAAAAAAAAIAJAQwAAAAAAAAwIYABAAAAAAAAJgQwAAAAAAAAwIQABgAAAAAAAJgQwAAAAAAAAAATAhgAAAAAAABgQgADAAAAAAAATAhgAAAAAAAAgAkBDAAAAAAAADAhgAEAAAAAAAAmBDAAAAAAAADAhAAGAAAAAAAAmBDAAAAAAAAAABMCGAAAAAAAAGBCAAMAAAAAAABMCGAAAAAAAACACQEMAAAAAAAAMCGAAQAAAAAAACYEMAAAAAAAAMCEAAYAAAAAAACYEMAAAAAAAAAAEwIYAAAAAAAAYEIAAwAAAAAAAEwIYAAAAAAAAIAJAQwAAAAAAAAwIYABAAAAAAAAJgQwAAAAAAAAwIQABgAAAAAAAJgQwAAAAAAAAAATAhgAAAAAAABgQgADAAAAAAAATAhgAAAAAAAAgAkBDAAAAAAAADAhgAEAAAAAAAAmBDAAAAAAAADAhAAGAAAAAAAAmBDAAAAAAAAAABMCGAAAAAAAAGBCAAMAAAAAAABMCGAAAAAAAACACQEMAAAAAAAAMCGAAQAAAAAAACYEMAAAAAAAAMCEAAYAAAAAAACYEMAAAAAAAAAAEwIYAAAAAAAAYEIAAwAAAAAAAEwIYAAAAAAAAIAJAQwAAAAAAAAwIYABAAAAAAAAJgQwAAAAAAAAwIQABgAAAAAAAJgQwAAAAAAAAAATAhgAAAAAAABgQgADAAAAAAAATAhgAAAAAAAAgAkBDAAAAAAAADAhgAEAAAAAAAAmBDAAAAAAAADAhAAGAAAAAAAAmBDAAAAAAAAAABMCGAAAAAAAAGBCAAMAAAAAAABMCGAAAAAAAACACQEMAAAAAAAAMCGAAQAAAAAAACYEMAAAAAAAAMCEAAYAAAAAAACYEMAAAAAAAAAAEwIYAAAAAAAAYEIAAwAAAAAAAEwIYAAAAAAAAIAJAQwAAAAAAAAwIYABAAAAAAAAJgQwAAAAAAAAwIQABgAAAAAAAJgQwAAAAAAAAAATAhgAAAAAAABgQgADAAAAAAAATAhgAAAAAAAAgAkBDAAAAAAAADAhgAEAAAAAAAAmBDAAAAAAAADAhAAGAAAAAAAAmBDAAAAAAAAAABMCGAAAAAAAAGBCAAMAAAAAAABMCGAAAAAAAACACQEMAAAAAAAAMCGAAQAAAAAAACYEMAAAAAAAAMCEAAYAAAAAAACYEMAAAAAAAAAAEwIYAAAAAAAAYEIAAwAAAAAAAEwIYAAAAAAAAIAJAQwAAAAAAAAwEatZ9zvkFdSWAAAAAElFTkSuQmCC"/>
+                                    
+                                </div>
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">After</span>
+
+                                    
+                                        Hook
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+                            
+                        
+
+                    
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="height: auto;">
+            <div class="x_title">
+
+                <div class="tags">
+                    
+                </div>
+
+                <h2>Scenario: <small>diagnostico individual junto con el comprobante digital OI</small></h2>
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                    </li>
+
+                    
+
+                    
+
+                    
+
+                    
+
+                    
+                        <li>
+                            <span class="step passed-background" data-toggle="tooltip" title="Scenario passed">7</span>
+                        </li>
+                    
+
+                    
+                        <li>
+                            <span class="step not-defined-background" data-toggle="tooltip" title="Scenario has nop step implementation.">1</span>
+                        </li>
+                    
+
+                    
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content" style="display: none;">
+                <div class="scenario-step-container"></div>
+                    
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">Before</span>
+
+                                    
+                                        Hook
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+                            
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">Given </span>
+
+                                    
+                                        El usuario se encuentra en la pagina de PVI
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">When </span>
+
+                                    
+                                        ingresa su usuario
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        ingresa su contraseña
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        presionar Ingresar
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        orden de inspección
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" data-toggle="tooltip" data-placement="top" title="Step has no implementation.">
+                                            <i class="fa fa-question-circle fa-2x not-defined-color"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">And </span>
+
+                                    
+                                        acción
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+                                        <pre class="info">
+// With Callbacks
+And (/^acción$/, (callback) => {
+    // Write code here that turns the phrase above into concrete actions
+    callback(null, 'pending');
+});
+
+// With Promises
+And (/^acción$/, () => {
+    // Write code here that turns the phrase above into concrete actions
+    return Promise.resolve('pending');
+});
+                                        </pre>
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+
+                    
+                
+                        
+                            <div class="scenario-step-container">
+
+                                
+                                    
+                                        <div class="label" title="Success">
+                                            <i class="fa fa-check-circle fa-2x passed-color" data-toggle="tooltip" data-placement="top" title="Step passed"></i>
+                                        </div>
+                                    
+                                
+
+                                <div class="text">
+                                    <span class="keyword highlight">After</span>
+
+                                    
+                                        Hook
+                                        
+                                    
+
+                                    
+
+                                </div>
+
+                                
+                                    
+
+                                    
+
+                                    
+                                    
+                                    
+
+                                    
+
+                                    
+
+                                    
+                                
+                            </div>
+
+                        
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+
+                            
+                        
+
+                        
+                            
+                        
+
+                    
+                
+            </div>
+        </div>
+    </div>
+
+
+        </div>
+    </div>
+
+    
+        <div class="created-by">
+            <p>Created by wswebcreation. Find me on:</p>
+            <a href="http://www.wswebcreation.nl/" target="_blank"><i class="fa fa-rss-square fa-2x"></i></a>
+            <a href="https://github.com/wswebcreation/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+            <a href="http://nl.linkedin.com/in/wimselles" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+            <a href="http://stackoverflow.com/users/5911978/wswebcreation" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+        </div>
+    
+
+    
+        <script src="../assets/js/jquery-3.2.1.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/Chart.min.js"></script>
+    
+
+    <!-- Custom -->
+    <script src="../assets/js/Chart.style.js"></script>
+    <script>
+        var hideResult;
+        var showAll;
+        $(document).ready(function () {
+
+            var scenarioOptions = {
+                legend: false,
+                responsive: false
+            };
+
+            new Chart(document.getElementById("scenario-chart"), {
+                type: 'doughnut',
+                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                data: {
+                    labels: [
+                        "Passed",
+                        "Failed",
+                        "Pending",
+                        "Skipped",
+                        "Ambiguous",
+                        "Not defined"
+                    ],
+                    datasets: [{
+                        data: [
+                            0,
+                            1,
+                            0,
+                            0,
+                            0,
+                            1
+                        ],
+                        backgroundColor: getChartColors()
+                    }]
+                },
+                options: scenarioOptions
+            });
+
+            $('.x_title').on('click', function () {
+    var $BOX_PANEL = $(this).closest('.x_panel'),
+        $ICON = $(this).find('.collapse-link i'),
+        $BOX_CONTENT = $BOX_PANEL.find('.x_content');
+
+    // fix for some div with hardcoded fix class
+    if ($BOX_PANEL.attr('style')) {
+        $BOX_CONTENT.slideToggle(200, function () {
+            $BOX_PANEL.removeAttr('style');
+        });
+    } else {
+        $BOX_CONTENT.slideToggle(200);
+        $BOX_PANEL.css('height', 'auto');
+    }
+
+    $ICON.toggleClass('fa-chevron-up fa-chevron-down');
+});
+
+$('body').tooltip({
+    selector: '[data-toggle="tooltip"]'
+});
+
+hideResult = (resultId) => {
+    $('span[class*=step]').closest('div.x_panel[style]').hide();
+    $('span[class*=' + resultId + ']').closest('div.x_panel[style]').show();
+}
+
+showAll = () => {
+    $('span[class*=step]').closest('div.x_panel[style]').show();
+}
+
+$(document).ready(() => {
+    const status = ['passed', 'failed', 'pending', 'skipped', 'ambiguous', 'not-defined']
+    status.forEach(value => {
+        var menuItem = $('span[class*=' + value + '-background]');
+        if (menuItem.length === 0) {
+            $('#' + value).parent().addClass('disabled');
+        }
+    })
+});
+
+        });
+    </script>
+</body>
+</html>
