@@ -10,7 +10,7 @@ public class HomePage extends BasePage{
   private By contraseñaUsuario = By.id("pass");
   private By ingreso = By.id("ingresar");
 
-    public String getTitleHomePage() {
+    public String getTitleHomePage(){
         return titleHomePage;
     }
 

@@ -31,3 +31,39 @@ Feature: Flujos PVI
     And marcar enviar copia
     And ingresar mail CC
     Then envio solicitud final
+
+    Scenario: diagnostico individual junto con el comprobante digital OI
+      Given El usuario se encuentra en la pagina de PVI
+      When ingresa su usuario
+      And ingresa su contraseña
+      And presionar Ingresar
+      And orden de inspección
+      And requerimientos
+      And check Masivo
+      And acciones Masivas
+      And diagnosticar
+      And instruccion uno
+      And no corresponde
+      And instruccion dos
+      And cerrar sin firma
+      And cerrar con firma
+      And seleccionar no corresponde
+      And aceptar
+      And cerrar sin firma
+      And aceptar
+      And diagnosticar req3 no corresponde con firma
+      And seleccionar no corresponde
+      And aceptar
+      And cerrar con firma
+      And aceptar
+      And diagnosticar req4 no corresponde inspeccionado no corresponde
+      And seleccionar no corresponde
+      And aceptar
+      And inspeccionado no corresponde
+      And diagnosticar req5 reinspeccion
+      And seleccionar re inspección
+      And aceptar
+      And diagnosticar req7 visita sin moradores
+      And seleccionar visita sin moradores
+      And aceptar
+

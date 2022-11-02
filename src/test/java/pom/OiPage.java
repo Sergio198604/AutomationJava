@@ -18,6 +18,17 @@ public class OiPage extends BasePage {
   private By copiaMail = By.id("mailCopia");
   private By btnEnvio = By.xpath("/html/body/div[12]/div/div[2]/form/div[2]/div/button");
   private By envioFinal = By.xpath("/html/body/div[14]/div/div[3]/div[2]/div/button");
+  private By ordendeInspeccion = By.id("orden_inspeccion");
+  private By accion = By.xpath("//*[@id=\"21\"]/td[8]/div/button[2]");
+  private By generarOi = By.xpath("//*[@id=\"21\"]/td[8]/div/ul/li[1]/a");
+  private By fijarFecha = By.xpath("//*[@id=\"calendar\"]/div[2]/div/table/tbody/tr/td/div[2]/div/div[2]/table/tbody/tr[14]");
+  private By inspectorC = By.xpath("//*[@id=\"ejecutor\"]/option[2]");
+  private By confimarEvento = By.xpath("//*[@id=\"formGenerarOiClendario\"]/div[5]/div[2]/button");
+
+
+
+
+
 
     public By getBuscador() {
         return buscador;
@@ -69,6 +80,30 @@ public class OiPage extends BasePage {
 
     public By getEnvioFinal() {
         return envioFinal;
+    }
+
+    public By getOrdendeInspeccion(){
+        return ordendeInspeccion;
+    }
+
+    public By getAccion() {
+        return accion;
+    }
+
+    public By getFijarFecha() {
+        return fijarFecha;
+    }
+
+    public By getInspectorC() {
+        return inspectorC;
+    }
+
+    public By getConfimarEvento() {
+        return confimarEvento;
+    }
+
+    public By getGenerarOi() {
+        return generarOi;
     }
 
     public OiPage(WebDriver driver){

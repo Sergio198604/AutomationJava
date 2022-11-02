@@ -1,12 +1,15 @@
 package seleniumgluecode;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Test extends TestBase {
 
@@ -24,7 +27,7 @@ public class Test extends TestBase {
     @When("^ingresa su contraseña$")
     public void ingresa_su_contraseña() {
         WebElement contraseñaUsuario = driver.findElement(homePage.getContraseñaUsuario());
-        contraseñaUsuario.sendKeys("12345678");
+        contraseñaUsuario.sendKeys("123456");
     }
 
     @Then("^presionar Ingresar$")
@@ -58,9 +61,9 @@ public class Test extends TestBase {
     }
 
     @Then("^Agregar primer requerimiento$")
-    public void agregar_primer_requerimiento() throws InterruptedException{
-        Thread.sleep(3000);
-        WebElement primerReq = driver.findElement(oipage.getPrimerReq());
+    public void agregar_primer_requerimiento() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        WebElement primerReq = wait.until(ExpectedConditions.elementToBeClickable(oipage.getPrimerReq()));
         primerReq.click();
     }
 
@@ -146,7 +149,7 @@ public class Test extends TestBase {
     }
 
     @Then("^descripcion segundo problema$")
-    public void descripcion_segundo_problema()throws InterruptedException {
+    public void descripcion_segundo_problema() throws InterruptedException {
         Thread.sleep(3000);
         WebElement descripcionProblema2 = driver.findElement(oipage.getDescripcionProblema());
         descripcionProblema2.sendKeys("test de prueba automatizado 2");
@@ -178,7 +181,7 @@ public class Test extends TestBase {
         WebElement checkProp = driver.findElement(oipage.getCheckProp());
         boolean b = checkProp.isSelected();
         System.out.println(b);
-        if(!b){
+        if (!b) {
             checkProp.click();
         }
         System.out.println(driver.findElement(oipage.getCheckProp()).isSelected());
@@ -186,23 +189,85 @@ public class Test extends TestBase {
     }
 
     @Then("^marcar enviar copia$")
-        public void marcar_enviar_copia() {
-            WebElement checkCopia = driver.findElement(oipage.getCheckCopia());
-            checkCopia.isSelected();
-            checkCopia.click();
-        }
+    public void marcar_enviar_copia() {
+        WebElement checkCopia = driver.findElement(oipage.getCheckCopia());
+        checkCopia.isSelected();
+        checkCopia.click();
+    }
 
-        @Then("^ingresar mail CC$")
-        public void ingresar_mail_CC() throws Throwable {
-            Thread.sleep(1000);
-           WebElement mail = driver.findElement(oipage.getCopiaMail());
-            mail.sendKeys("jwiller@planok.com");
-        }
+    @Then("^ingresar mail CC$")
+    public void ingresar_mail_CC() throws Throwable {
+        Thread.sleep(1000);
+        WebElement mail = driver.findElement(oipage.getCopiaMail());
+        mail.sendKeys("interno@yopmail.com");
+    }
 
-         @Then("^envio solicitud final$")
-         public void envioSolicitudFinal() throws InterruptedException {
+    @Then("^envio solicitud final$")
+    public void envioSolicitudFinal() throws InterruptedException {
         WebElement envioFinal = driver.findElement(oipage.getEnvioFinal());
         envioFinal.click();
         Thread.sleep(5000);
     }
+
+    @And("^orden de inspección$")
+    public void ordenDeInspección() {
+        WebElement ordenInspeccion = driver.findElement(diagpage.getOrdendeInspeccion());
+        ordenInspeccion.click();
+    }
+
+    @And("^requerimientos$")
+    public void requerimientos() {
+        WebElement requerimientos = driver.findElement(diagpage.getRequerimientos());
+        requerimientos.click();
+    }
+
+    @And("^check Masivo$")
+    public void checkMasivo() {
+        WebElement checkMasivo = driver.findElement(diagpage.getCheckMasivo());
+        checkMasivo.click();
+    }
+
+    @And("^acciones Masivas$")
+    public void accionesMasivas() {
+        WebElement accionesMasivas = driver.findElement(diagpage.getAccionesMasivas());
+        accionesMasivas.click();
+    }
+
+    @And("^diagnosticar$")
+    public void diagnosticar() {
+        WebElement diagnosticar = driver.findElement(diagpage.getDiagnosticar());
+        diagnosticar.click();
+    }
+
+    @And("^instruccion uno$")
+    public void instruccion() {
+        WebElement instruccion1 = driver.findElement(diagpage.getCorresponde());
+        instruccion1.sendKeys("1");
+    }
+
+    @And("^no corresponde$")
+    public void noCorresponde() {
+        WebElement noCorresponde = driver.findElement(diagpage.getNoCorresponde());
+        noCorresponde.click();
+    }
+
+    @And("^instruccion dos$")
+    public void instruccionDos() {
+        WebElement instruccion2 = driver.findElement(diagpage.getNoCorresponde());
+        instruccion2.sendKeys("2");
+    }
+
+    @And("^cerrar sin firma$")
+    public void cerrarSinFirma() {
+        WebElement cerrarSinFirma = driver.findElement(diagpage.getCerrarSinfirma());
+        cerrarSinFirma.click();
+    }
+
+    @And("^cerrar con firma$")
+    public void cerrarConFirma() {
+    }
 }
+
+
+
+

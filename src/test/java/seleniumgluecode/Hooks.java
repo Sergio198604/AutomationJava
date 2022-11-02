@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import runner.browser_manager.DriverManager;
 import runner.browser_manager.DriverManagerFactory;
 import runner.browser_manager.DriverType;
-
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -24,7 +23,7 @@ public class Hooks {
         System.out.println("Se está ejecutando el escenario nro: " + numberofCase);
         driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
         driver = driverManager.getDriver();
-        driver.get("http://10.33.51.209/automation/index2.php");
+        driver.get("http://localhost:8081/pvi/index2.php");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
@@ -35,12 +34,14 @@ public class Hooks {
             byte[] screenshoot = ((TakesScreenshot)driverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshoot,"image/png");
         }
-        System.out.println("El escenario nro: " + numberofCase + " se ejecuto correctamente");
+        System.out.println("El escenario nro: " + numberofCase + " se ejecutó correctamente");
         driverManager.quitDriver();
     }
+
 
     public static WebDriver getDriver(){
         return driver;
     }
 
 }
+

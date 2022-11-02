@@ -19,7 +19,6 @@ public class BasePage {
         }
     }
 
-
     public String getTitle() throws Exception {
         try {
            return driver.getTitle();
@@ -27,5 +26,4 @@ public class BasePage {
             throw new Exception("No se pudo obtener el titulo del driver");
         }
     }
-
 }
